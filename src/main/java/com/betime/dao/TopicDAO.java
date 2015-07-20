@@ -28,14 +28,14 @@ public class TopicDAO {
     }
 
     public Topic findById(Integer id) {
-        try {
             String sql = "SELECT * FROM topics WHERE id = ?";
             Topic result  =  jdbcTemplate.queryForObject(sql, new TopicMapper(), new Object[]{id});
             return result;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-       return null;
+    }
+
+    public int save(Topic topic) {
+        String sql = "INSERT INTO topics (topic, name, content) values (?, ?, ?)";
+        return jdbcTemplate.update(sql, new Object[]{topic.getTopic(),topic.getName(), topic.getContent()});
     }
 
     public class TopicMapper implements RowMapper<Topic> {
