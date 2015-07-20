@@ -1,6 +1,7 @@
 package com.betime.controllers;
 
 
+import com.betime.dao.TopicDAO;
 import com.betime.services.NameService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,9 @@ public class MainController {
         return "index";
     }
 
-    private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private DataSource dataSource;
-    /*public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }*/
+    private TopicDAO topicDAO;
 
     @Transactional
     @RequestMapping(value = "/hello.html")
@@ -52,13 +49,9 @@ public class MainController {
         String message = nameServiceExample.getAgeMessage(age);
         model.addAttribute("name" , name);
         model.addAttribute("age", age);
-        model.addAttribute("message" , message);
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-        String SQL = "select * from topics";
-        List<Topic> topic = jdbcTemplate.query(SQL,
-                new TopicMapper());
-        System.out.println("===>> " + topic);
-        model.addAttribute("topic", topic);
+        model.addAttribute("message", message);
+
+        model.addAttribute("topic", topicDAO.listAllTopics());
         return "hello";
     }
 
