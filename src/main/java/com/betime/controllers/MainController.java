@@ -55,6 +55,12 @@ public class MainController {
         return "hello";
     }
 
+    @RequestMapping(value = "/viewtopic.html")
+    public String viewTopic(Model model, @RequestParam("id") int id) {
+        model.addAttribute("topic", topicDAO.findById(id));
+        return "viewtopic";
+    }
+
     public class TopicMapper implements RowMapper<Topic> {
         public Topic mapRow(ResultSet rs, int rowNum) throws SQLException {
             Topic topic = new Topic();

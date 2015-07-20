@@ -16,17 +16,26 @@ public class TopicDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private DataSource dataSource;
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public List<Topic> listAllTopics() {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
         String SQL = "select * from topics";
         List<Topic> topic = jdbcTemplate.query(SQL,
                 new TopicMapper());
         return topic;
+    }
+
+    public Topic findById(Integer id) {
+        try {
+            String sql = "SELECT * FROM topics WHERE id = ?";
+            Topic result  =  jdbcTemplate.queryForObject(sql, new TopicMapper(), new Object[]{id});
+            return result;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+       return null;
     }
 
     public class TopicMapper implements RowMapper<Topic> {
