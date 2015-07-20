@@ -4,6 +4,7 @@ package com.betime.controllers;
 import com.betime.services.NameService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,8 @@ public class MainController {
     static Logger log = Logger.getLogger(MainController.class);
 
     @Autowired
-    private NameService nameService;
+    @Qualifier("nameService2")
+    private NameService nameServiceExample;
 
     @RequestMapping(value = "/index.html")
     public String index() {
@@ -46,8 +48,8 @@ public class MainController {
     @RequestMapping(value = "/hello.html")
     public String hello(Model model, @RequestParam("age") int age) {
         log.debug("=====Hello.html====");
-        String name = nameService.getName();
-        String message = nameService.getAgeMessage(age);
+        String name = nameServiceExample.getName();
+        String message = nameServiceExample.getAgeMessage(age);
         model.addAttribute("name" , name);
         model.addAttribute("age", age);
         model.addAttribute("message" , message);

@@ -5,8 +5,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class NameService {
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
+
     public String getName() {
-        return "Chiwa Kantawong";
+        return name;
     }
 
     public String getAgeMessage(Integer age) {

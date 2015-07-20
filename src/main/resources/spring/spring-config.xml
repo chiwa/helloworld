@@ -15,9 +15,24 @@
         <property name="password" value="pingu123" />
     </bean>
 
+    <bean name="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/betimes2" />
+        <property name="username" value="root" />
+        <property name="password" value="pingu123" />
+    </bean>
+
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean name="nameService" class="com.betime.services.NameService" >
+        <property name="name" value="Chiwa Kantawong" />
+    </bean>
+
+    <bean name="nameService2" class="com.betime.services.NameService" >
+        <property name="name" value="Rattapon Sukmuang" />
     </bean>
 
 </beans>
