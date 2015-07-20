@@ -5,7 +5,7 @@
   <tr>
     <td>${item.id}</td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewtopic.html?id=${item.id}" target="_blank">${item.topic}</a></td>
-    <td>[${item.name}]</td>
+    <td>[${item.name}]===>> <a href="delete.html?id=${item.id}">delete</a></td>
   </tr>
 </c:forEach>
 </table>

@@ -1,4 +1,7 @@
-package com.betime.controllers;
+package com.betime.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by WINDOWS 7 on 20/7/2558.
@@ -9,6 +12,15 @@ public class Topic {
     private String topic;
     private String content;
     private String name;
+    private List<Reply> replieList = new ArrayList<Reply>();
+
+    public List<Reply> getReplieList() {
+        return replieList;
+    }
+
+    public void setReplieList(List<Reply> replieList) {
+        this.replieList = replieList;
+    }
 
     public Integer getId() {
         return id;

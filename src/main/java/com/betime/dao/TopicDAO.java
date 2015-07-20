@@ -1,6 +1,6 @@
 package com.betime.dao;
 
-import com.betime.controllers.Topic;
+import com.betime.model.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -35,7 +35,7 @@ public class TopicDAO {
 
     public int save(Topic topic) {
         String sql = "INSERT INTO topics (topic, name, content) values (?, ?, ?)";
-        return jdbcTemplate.update(sql, new Object[]{topic.getTopic(),topic.getName(), topic.getContent()});
+        return jdbcTemplate.update(sql, new Object[]{topic.getTopic(), topic.getName(), topic.getContent()});
     }
 
     public class TopicMapper implements RowMapper<Topic> {
