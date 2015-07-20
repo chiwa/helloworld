@@ -1,6 +1,7 @@
 package com.betime.controllers;
 
 
+import com.betime.Managers.ITopicManager;
 import com.betime.dao.ReplyDAO;
 import com.betime.dao.TopicDAO;
 import com.betime.model.Reply;
@@ -24,10 +25,19 @@ public class MainController {
     @Autowired
     private ReplyDAO replyDAO;
 
+    @Autowired
+    private ITopicManager topicManager;
+
     @RequestMapping(value = "/index.html")
     public String index(Model model) {
         model.addAttribute("topic", topicDAO.listAllTopics());
         return "hello";
+    }
+
+    @RequestMapping(value = "/delete.html")
+    public String delete(Model model,  @RequestParam("id") int id) {
+        topicManager.deleteById(id);
+        return "redirect:index.html";
     }
 
     @RequestMapping(value = "/viewtopic.html")

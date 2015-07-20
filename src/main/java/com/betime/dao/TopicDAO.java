@@ -38,6 +38,12 @@ public class TopicDAO {
         return jdbcTemplate.update(sql, new Object[]{topic.getTopic(), topic.getName(), topic.getContent()});
     }
 
+    public int delete(Integer id) {
+        String sql = "delete from topics where id = ?";
+        return jdbcTemplate.update(sql, new Object[]{id});
+
+    }
+
     public class TopicMapper implements RowMapper<Topic> {
         public Topic mapRow(ResultSet rs, int rowNum) throws SQLException {
             Topic topic = new Topic();

@@ -32,6 +32,12 @@ public class ReplyDAO {
         return result;
     }
 
+    public int delete(Integer id) {
+        String sql = "DELETE from replyx where topic_id = ?";
+        return jdbcTemplate.update(sql, new Object[]{id});
+
+    }
+
 
     private class ReplyMapper implements org.springframework.jdbc.core.RowMapper<Reply> {
         public Reply mapRow(ResultSet rs, int rowNum) throws SQLException {
