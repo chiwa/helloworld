@@ -42,6 +42,7 @@ public class MainController {
 
     @RequestMapping(value = "/viewtopic.html")
     public String viewTopic(Model model, @RequestParam("id") int id) {
+        //TODO: need to access Manager
         model.addAttribute("topic", topicDAO.findById(id));
         model.addAttribute("reply", replyDAO.findByTopicId(id));
         return "viewtopic";
