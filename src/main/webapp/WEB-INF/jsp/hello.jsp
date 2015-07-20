@@ -1,9 +1,19 @@
-<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='cx'%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 Hello ${name} (${age})
 
-<cx:set var="color" scope="session" value="green"/>
-<cx:if test="${age > 25}">
-   <cx:set var="color" scope="session" value="red"/>
-</cx:if>
+<c:set var="color" scope="session" value="green"/>
+<c:if test="${age > 25}">
+   <c:set var="color" scope="session" value="red"/>
+</c:if>
 
-<br/> <font color="<cx:out value="${color}"/>"> ${message} </font>
+<br/> <font color="<c:out value="${color}"/>"> ${message} </font>
+
+<table>
+<c:forEach items="${topic}" var="item">
+  <tr>
+    <td>${item.id}</td>
+    <td>${item.topic}</td>
+    <td>${item.name}</td>
+  </tr>
+</c:forEach>
+</table>
