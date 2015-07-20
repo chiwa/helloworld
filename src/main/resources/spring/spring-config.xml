@@ -13,10 +13,7 @@
         <property name="url" value="jdbc:mysql://localhost:3306/betimes" />
         <property name="username" value="root" />
         <property name="password" value="pingu123" />
-        <property name="initialSize" value="3"/>
     </bean>
-
-
 
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
